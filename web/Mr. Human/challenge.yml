@@ -2,11 +2,11 @@
 # other tools to install and deploy your challenge.
 
 # Required sections
-name: "Pretty Dark"
+name: "Mr. Human"
 author: "Gerard Wiśniewski"
-category: crypto
-description: Nothing to see here.
-value: 100
+category: web
+description: Prove that you are a human.
+value: 200
 type: standard
 
 # The extra field provides additional fields for data during the install/sync commands/
@@ -23,7 +23,7 @@ type: standard
 # If you have a Dockerfile set to .
 # If you have an imaged hosted on Docker set to the image url (e.g. python/3.8:latest, registry.gitlab.com/python/3.8:latest)
 # Follow Docker best practices and assign a tag
-image: null
+image: .
 # Specify a host to deploy the challenge onto.
 # The currently supported URI schemes are ssh:// and registry://
 # ssh is an ssh URI where the above image will be copied to and deployed (e.g. ssh://root@123.123.123.123)
@@ -34,54 +34,59 @@ host: null
 # Optional settings
 
 # connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
-# connection_info: nc hostname 12345
+connection_info: http://127.0.0.1:8001/
 
 # healthcheck is a tool/script used to check a challenge
 # If connection_info was provided to CTFd when the challenge was installed, it will be passed to the healthcheck script:
 # ./writeup/exploit.sh --connection-info "nc hostname 12345"
-# healthcheck: writeup/exploit.sh
-
+#healthcheck: writeup/exploit.sh
+# TODO ???
 # Can be removed if unused
-# attempts: 5
+#attempts: 5
 
 # Flags specify answers that your challenge use. You should generally provide at least one.
 # Can be removed if unused
 # Accepts strings or dictionaries of CTFd API data
 flags:
     # A static case sensitive flag
-    - flag{84ck_In_8l4CK}
+    - flag{Y0U_RuN_1N70_k3Rn3L_P4N1c}
 
 # Topics are used to help tell what techniques/information a challenge involves
 # They are generally only visible to admins
 # Accepts strings
 topics:
-    - steganography
+    - automation
+    - crypto
 
 # Tags are used to provide additional public tagging to a challenge
 # Can be removed if unused
 # Accepts strings
 tags:
-    - crypto
+    - web
 
 # Provide paths to files from the same directory that this file is in
 # Accepts strings
-files:
-    - src/pretty_dark.png
+#files:
+#    - dist/source.py
 
 # Hints are used to give players a way to buy or have suggestions. They are not
 # required but can be nice.
 # Can be removed if unused
 # Accepts dictionaries or strings
-hints:
-    - I swear I could see something in this picture.
+#hints:
+#    - {
+#        content: "This hint costs points",
+#        cost: 10
+#    }
+#    - This hint is free
 
 # Requirements are used to make a challenge require another challenge to be
 # solved before being available.
 # Can be removed if unused
 # Accepts challenge names as strings or challenge IDs as integers
-# requirements:
-#     - "Warmup"
-#     - "Are you alive"
+#requirements:
+#    - "Warmup"
+#    - "Are you alive"
 
 # The state of the challenge.
 # If the field is omitted, the challenge is visible by default.
