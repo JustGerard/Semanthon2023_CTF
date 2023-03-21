@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <title>Simple Question</title>
+</head>
+  <body>
+    <header><%= question %></header>
+    <div id="content" style="display: flex; justify-content: center;">
+      <form method="post" action="/">
+        <input type="radio" id="yes" name="question" value="true">
+        <label for="yes">YES</label><br>
+        <input type="radio" id="no" name="question" value="false">
+        <label for="no">NO</label><br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+
+  <!-- TODO REALLY IMPORTANT implement getting flag from flag.txt file -->
+
+</html>
