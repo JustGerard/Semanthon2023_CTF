@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>Character Creator</h1>
+<p>Create your own character</p>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div style="display: flex; justify-content: center;">
+        <form method="post" id="creator-form" action="/save-character"></form>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <button id="form-add-row" onclick="AddEmptyProperty()">Add property</button>
+        <button id="save-form" onclick="SaveCharacter()">Save Character</button>
+        <button id="reset-form" onclick="ResetForm()">Reset Character</button>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <label for="file-upload">Load Character from file</label>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <input type="file" id="file-upload"/>
+    </div>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let attributesAdded = 0;
+    let form = document.getElementById("creator-form");
+    let fileUpload = document.getElementById("file-upload");
+    ResetForm();
+
+    fileUpload.addEventListener("change", () => {
+        if (fileUpload.files && fileUpload.files[0]) {
+            let data = new FormData();
+            data.append("file", fileUpload.files[0])
+            fetch('/load-character', {
+                method: 'POST',
+                body: data,
+            }).then((response) => response.json()).then((data) => {
+                form.replaceChildren();
+                attributesAdded = 0;
+                Object.entries(data).forEach(entry => {
+                    const [key, value] = entry;
+                    AddProperty(key, value);
+                });
+            })
+        }
+    });
+
+    function AddProperty(name, value, type = "text") {
+        let new_property = document.createElement("input");
+        new_property.setAttribute("type", type);
+        new_property.setAttribute("name", name);
+        let new_label = document.createElement("label");
+        new_label.setAttribute("for", new_property.id);
+        new_label.innerText = name;
+        if (value) {
+            new_property.setAttribute("value", value);
+        }
+        form.appendChild(new_label);
+        form.appendChild(new_property);
+    }
+
+    function ResetForm() {
+        form.replaceChildren();
+        AddProperty("Name", "Name");
+        AddProperty("Age", 18, "number");
+        attributesAdded = 0;
+    }
+
+    function AddEmptyProperty() {
+        AddProperty("prop" + attributesAdded, null);
+        attributesAdded++;
+    }
+
+    function SaveCharacter() {
+        form.submit();
+    }
+
+</script>
+{% endblock %}
