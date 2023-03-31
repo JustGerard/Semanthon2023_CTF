@@ -6,7 +6,7 @@ name: "The Game"
 author: "Gerard Wiśniewski"
 category: misc
 description: Can you win The Game?
-value: 500
+value: 600
 type: standard
 
 # The extra field provides additional fields for data during the install/sync commands/
@@ -68,7 +68,7 @@ tags:
 # Provide paths to files from the same directory that this file is in
 # Accepts strings
 files:
-    - dist/TheGame.apk
+    - dist/app-release.apk
 
 # Hints are used to give players a way to buy or have suggestions. They are not
 # required but can be nice.
