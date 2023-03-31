@@ -1,28 +1,39 @@
 #!/usr/bin/env python
 import re
+import string
 
 from flask import Flask, request
 
 app = Flask(__name__)
 
 FLAG = "flag{7h1nK1n9_a80U7_P1nK_3l3PhaN72}"
-MIN_SCORE = 2137
-CERTIFICATE = """MIIC5DCCAcwCAQEwDQYJKoZIhvcNAQELBQAwNzEWMBQGA1UEAwwNQW5kcm9pZCBEZWJ1ZzEQMA4G
-    A1UECgwHQW5kcm9pZDELMAkGA1UEBhMCVVMwIBcNMjMwMzI5MTg0MTI0WhgPMjA1MzAzMjExODQx
-    MjRaMDcxFjAUBgNVBAMMDUFuZHJvaWQgRGVidWcxEDAOBgNVBAoMB0FuZHJvaWQxCzAJBgNVBAYT
-    AlVTMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi+ko05eKJroFJsSBOeMy0dafkWQc
-    Ila6GTiqFH4q+3ZyKgk1T3PsN+MiA2syQgMLVCGB9KNNIJ9nqpj6V+y202FNtPBoeHuK5z3IYx0a
-    r3u6UeiSTA7qN4O6xYIdmx7fJCzLvyO0v4c+Vebh/RockoLsrO2Ei/hcZ9HYcxIYkC8jbwbbLvT0
-    9ux1D4iVgVw8uUiYdEkUu/+INBzVcZI67zbBtkXH2NW/UDwOuYmOMiqnw0pVhtjyKC1P0qMThR1S
-    hPKUX3H4QAj1AQn6VxoNxGhqKI7uoyhkM2h2Pq/thRFFth21B+QKkIRuemxFWAh1kErwF7Wv9i8G
-    a/WHPp0D/wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQAAPayvwruA/ZhG9dEU8rMhUc153dx6HjCs
-    mUnDfUCQaZ6/nEE+CCmxd9d63mfJiySJGeRHFNRUYeonjJFFx9GyHPXB7VrsLqka07kaBsgMu/Qk
-    SAfY7/qwwVtHvzWUWY7Qo62AHo0bzm016pjtSTyy1R6tB9O7gA6Q/QPTEsHKRqs08WOlFgnQ6gCT
-    Cg30X6trjHwX11UIP5H/vUg/ogAJ5fT53uuYxJcUZR7Aw5isg5nLiTMnl7+yuFc8sh4DYG1fU3zG
-    MZwDu6GN72CiQWcKRxZzYrxYAdKiQ+7qa+k9g3wWjlFte+v3jyXON+C9eMDMaxfuIgMstg8+fkg/
-    01xr"""
+MIN_SCORE = 2023
+CERTIFICATE = """MIICljCCAX4CAQEwDQYJKoZIhvcNAQELBQAwETEPMA0GA1UEAwwGR2VyYXJkMB4XDTIzMDMzMTE1
+MDA1OVoXDTQ4MDMyNDE1MDA1OVowETEPMA0GA1UEAwwGR2VyYXJkMIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAoHRDpRAJgIIYWi8EBxmKJroINPDpYzcUPkPI8RipUaMi9esWb4hqT2QA
+ezF8X2wiH4Osv2d1/vgplnA5sgLPod52XCQXzNnIJux2d7H6raUXk5EUb95sWBlYfhRsr73J4FZd
+v0YXG8Ug/V2bZ9um7kX/U7dXCg5WPAdhzbIW+lekukro5v4T0QYfne+d21DvImAEbw87MJ6sAZPp
+aB2+WABy2zlQ7UVGe/+0+VkE/jtnInfyplwPkKtz3QGDyCpzEAc3rR5eeCbSp//EOdpoZleqttMa
+YavyNcWYyFvVw7+i140AfFbRN8UV4f8eUaSMtuPmEUMR+Db6ITd8gk6h3wIDAQABMA0GCSqGSIb3
+DQEBCwUAA4IBAQBtQSd5H2iz+mHjCv4icP6GTsVWs23W2mcuqHQyCN8SgVJ/1H4NUcnNYek7oG4+
+ckxe4i36V+B4vHQpwyS0wumv+g6Io6VT5leoL3NyKTcCkLcCjC2gzgBml/UaFfyBmNGnlvDunq0N
+8qXCeoFjvUGqq0Q6L//q0yq8B8mQNZOryxB+b+37h45rkhfJONxzsQ649Hen7x6u2IziioyJ8kHV
+eXea+VDVxgsWXz608ND0FAi9FL2ofW5B3/R+gR/KikAAARfJMOjdGiEvD7AX+JoRudG2oREdHHL7
+4adsmD8jsYsRkB2rU23Ymp8bXEJvFJF6N7hYGKiFbWr2XL8ihF4o
+"""
 
 CERTIFICATE = re.sub(r"\s+", "", CERTIFICATE)
+
+
+class MyException(Exception):
+    pass
+
+
+alphabet = string.ascii_lowercase + string.ascii_uppercase + string.digits
+
+
+def shift_string_left(text, shift):
+    return text[shift:] + text[:shift]
 
 
 def _is_valid_cert(certificate: str) -> bool:
@@ -35,10 +46,17 @@ def validate_cert():
     try:
         certificate = request.json["cert"]
         if _is_valid_cert(certificate):
-            return {}, 200
+            return "", 200
     except Exception as _:
         pass
-    return {"status": "No hacking!!!"}, 400
+    return "No hacking!!!", 400
+
+
+def _is_valid_validity_string(validity_string: str, score: int) -> bool:
+    if len(validity_string) != 50:
+        return False
+    parsed_str = shift_string_left(validity_string, score)
+    return parsed_str == CERTIFICATE[:50]
 
 
 @app.post("/validate-score")
@@ -46,13 +64,15 @@ def validate_score():
     try:
         data = request.json
         if not _is_valid_cert(data["cert"]):
-            raise Exception("No hacking!!!")
+            raise MyException("No hacking!!!")
         score = data['score']
         if score < MIN_SCORE:
-            raise Exception("You lost!!!")
-        return {"status": f"You won!!!\n{FLAG}"}, 200
-    except Exception as e:
-        return {"status": str(e)}, 400
+            raise MyException("You lost!!!")
+        if not _is_valid_validity_string(data["validity"], score):
+            raise MyException("No hacking!!!")
+        return f"You won!!!\n{FLAG}", 200
+    except MyException as e:
+        return str(e), 400
 
 
 if __name__ == "__main__":
