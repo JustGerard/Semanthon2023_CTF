@@ -6,17 +6,17 @@ name: "Forgotten Password"
 author: "Gerard Wiśniewski"
 category: pwn
 description: I've left the flag in my program. But I forgot the password to it. You have to guess, but I remember it was case sensitive and contained only letters and numbers.
-value: 400
+value: 500
 type: standard
 
 # The extra field provides additional fields for data during the install/sync commands/
 # Fields in extra can be used to supply additional information for other challenge types
 # For example the follow extra field is for dynamic challenges. To use these following
 # extra fields, set the type to "dynamic" and uncomment the "extra" section below
-# extra:
-#     initial: 500
-#     decay: 100
-#     minimum: 50
+extra:
+    initial: 500
+    decay: 5
+    minimum: 250
 
 # Settings used for Dockerfile deployment
 # If not used, remove or set to null
@@ -34,7 +34,7 @@ image: .
 # Optional settings
 
 # connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
-connection_info: docker run forgotten-password
+connection_info: docker run public.ecr.aws/t1r2j1b6/forgotten-password
 
 # healthcheck is a tool/script used to check a challenge
 # If connection_info was provided to CTFd when the challenge was installed, it will be passed to the healthcheck script:
