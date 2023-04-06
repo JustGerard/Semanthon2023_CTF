@@ -4,32 +4,32 @@
 # Required sections
 name: "Spooky"
 author: "Gerard Wiśniewski"
-category: crypto
+category: misc
 description: booOoooOoooOoooO
-value: 100
-type: standard
+value: 200
+type: dynamic
 
 # The extra field provides additional fields for data during the install/sync commands/
 # Fields in extra can be used to supply additional information for other challenge types
 # For example the follow extra field is for dynamic challenges. To use these following
 # extra fields, set the type to "dynamic" and uncomment the "extra" section below
-# extra:
-#     initial: 500
-#     decay: 100
-#     minimum: 50
+extra:
+    initial: 200
+    decay: 5
+    minimum: 100
 
 # Settings used for Dockerfile deployment
 # If not used, remove or set to null
 # If you have a Dockerfile set to .
 # If you have an imaged hosted on Docker set to the image url (e.g. python/3.8:latest, registry.gitlab.com/python/3.8:latest)
 # Follow Docker best practices and assign a tag
-image: null
+# image: null
 # Specify a host to deploy the challenge onto.
 # The currently supported URI schemes are ssh:// and registry://
 # ssh is an ssh URI where the above image will be copied to and deployed (e.g. ssh://root@123.123.123.123)
 # registry is a Docker registry tag (e.g registry://registry.example.com/test/image)
 # host can also be specified during the deploy process: `ctf challenge deploy challenge --host=ssh://root@123.123.123.123`
-host: null
+# host: null
 
 # Optional settings
 
@@ -57,13 +57,13 @@ flags:
 # Accepts strings
 topics:
     - video
-    - crypto
+    - steganography
 
 # Tags are used to provide additional public tagging to a challenge
 # Can be removed if unused
 # Accepts strings
 tags:
-    - crypto
+    - steganography
 
 # Provide paths to files from the same directory that this file is in
 # Accepts strings
