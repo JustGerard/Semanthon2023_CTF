@@ -4,5 +4,5 @@ COPY src/ ./
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 8000
 ENTRYPOINT ["/usr/src/app/serve.sh"]

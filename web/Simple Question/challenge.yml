@@ -6,17 +6,17 @@ name: "Simple Question"
 author: "Gerard Wiśniewski"
 category: web
 description: Answer my question and the flag shall be yours.
-value: 300
-type: standard
+value: 400
+type: dynamic
 
 # The extra field provides additional fields for data during the install/sync commands/
 # Fields in extra can be used to supply additional information for other challenge types
 # For example the follow extra field is for dynamic challenges. To use these following
 # extra fields, set the type to "dynamic" and uncomment the "extra" section below
-# extra:
-#     initial: 500
-#     decay: 100
-#     minimum: 50
+extra:
+ initial: 400
+ decay: 5
+ minimum: 200
 
 # Settings used for Dockerfile deployment
 # If not used, remove or set to null
@@ -34,7 +34,7 @@ image: .
 # Optional settings
 
 # connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
-connection_info: http://127.0.0.1:3000/
+connection_info: https://simple-question.semanthon.com/
 
 # healthcheck is a tool/script used to check a challenge
 # If connection_info was provided to CTFd when the challenge was installed, it will be passed to the healthcheck script:
