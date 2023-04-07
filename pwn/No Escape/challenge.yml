@@ -7,7 +7,7 @@ author: "Gerard Wiśniewski"
 category: pwn
 description: There is no escape!
 value: 500
-type: standard
+type: dynamic
 
 # The extra field provides additional fields for data during the install/sync commands/
 # Fields in extra can be used to supply additional information for other challenge types

@@ -7,7 +7,7 @@ author: "Gerard Wiśniewski"
 category: pwn
 description: I've left the flag in my program. But I forgot the password to it. You have to guess, but I remember it was case sensitive and contained only letters and numbers.
 value: 500
-type: standard
+type: dynamic
 
 # The extra field provides additional fields for data during the install/sync commands/
 # Fields in extra can be used to supply additional information for other challenge types
