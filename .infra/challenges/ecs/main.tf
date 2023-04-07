@@ -16,7 +16,7 @@ module "container_definition" {
   container_image          = var.image
   container_memory         = var.container_memory
   container_cpu            = var.container_cpu
-  readonly_root_filesystem = true
+  readonly_root_filesystem = var.readonly_root_filesystem
 
   log_configuration = {
     logDriver = "awslogs"

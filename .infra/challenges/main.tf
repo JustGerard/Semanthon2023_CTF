@@ -23,3 +23,16 @@ module "i_cant_feel_your_get" {
   private_subnet_ids = local.private_subnet_ids
   cluster_name       = local.cluster_name
 }
+
+module "character_creator" {
+  source                   = "./ecs"
+  name                     = "character-creator"
+  image                    = "995295403905.dkr.ecr.eu-north-1.amazonaws.com/character-creator:latest"
+  execution_role_arn       = local.execution_role_arn
+  vpc_id                   = local.vpc_id
+  cluster_id               = local.cluster_id
+  security_group_id        = local.security_group_id
+  private_subnet_ids       = local.private_subnet_ids
+  cluster_name             = local.cluster_name
+  readonly_root_filesystem = false
+}

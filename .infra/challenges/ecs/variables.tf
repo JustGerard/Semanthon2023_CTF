@@ -59,3 +59,8 @@ variable "container_port" {
   type    = number
   default = 8000
 }
+
+variable "readonly_root_filesystem" {
+  type    = bool
+  default = true
+}
