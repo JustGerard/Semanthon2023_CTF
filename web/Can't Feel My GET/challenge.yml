@@ -6,17 +6,17 @@ name: "Can't Feel My GET"
 author: "Gerard Wiśniewski"
 category: web
 description: I bet you can't GET the flag
-value: 200
-type: standard
+value: 300
+type: dynamic
 
 # The extra field provides additional fields for data during the install/sync commands/
 # Fields in extra can be used to supply additional information for other challenge types
 # For example the follow extra field is for dynamic challenges. To use these following
 # extra fields, set the type to "dynamic" and uncomment the "extra" section below
-# extra:
-#     initial: 500
-#     decay: 100
-#     minimum: 50
+extra:
+ initial: 300
+ decay: 5
+ minimum: 150
 
 # Settings used for Dockerfile deployment
 # If not used, remove or set to null
@@ -29,12 +29,12 @@ image: .
 # ssh is an ssh URI where the above image will be copied to and deployed (e.g. ssh://root@123.123.123.123)
 # registry is a Docker registry tag (e.g registry://registry.example.com/test/image)
 # host can also be specified during the deploy process: `ctf challenge deploy challenge --host=ssh://root@123.123.123.123`
-host: null
+#host: null
 
 # Optional settings
 
 # connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
-connection_info: http://127.0.0.1:8002/
+connection_info: https://cant-feel-my-get.semanthon.com
 
 # healthcheck is a tool/script used to check a challenge
 # If connection_info was provided to CTFd when the challenge was installed, it will be passed to the healthcheck script:
