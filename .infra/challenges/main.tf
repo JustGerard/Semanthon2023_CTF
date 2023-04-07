@@ -36,3 +36,16 @@ module "character_creator" {
   cluster_name             = local.cluster_name
   readonly_root_filesystem = false
 }
+
+module "mr-human" {
+  source                   = "./ecs"
+  name                     = "mr-human"
+  image                    = "995295403905.dkr.ecr.eu-north-1.amazonaws.com/mr-human:latest"
+  execution_role_arn       = local.execution_role_arn
+  vpc_id                   = local.vpc_id
+  cluster_id               = local.cluster_id
+  security_group_id        = local.security_group_id
+  private_subnet_ids       = local.private_subnet_ids
+  cluster_name             = local.cluster_name
+  readonly_root_filesystem = false
+}
