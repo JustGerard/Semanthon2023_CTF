@@ -32,7 +32,7 @@ variable "cluster_name" {
 
 variable "desired_count" {
   type    = number
-  default = 2
+  default = 1
 }
 
 variable "min_count" {
@@ -63,4 +63,9 @@ variable "container_port" {
 variable "readonly_root_filesystem" {
   type    = bool
   default = true
+}
+
+variable "healthcheck" {
+  type    = string
+  default = "/"
 }
