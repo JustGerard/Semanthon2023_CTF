@@ -76,3 +76,16 @@ module "simple-question" {
   cluster_name             = local.cluster_name
   readonly_root_filesystem = false
 }
+
+module "the-game" {
+  source                   = "./ecs"
+  name                     = "the-game"
+  image                    = "995295403905.dkr.ecr.eu-north-1.amazonaws.com/the-game:latest"
+  execution_role_arn       = local.execution_role_arn
+  vpc_id                   = local.vpc_id
+  cluster_id               = local.cluster_id
+  security_group_id        = local.security_group_id
+  private_subnet_ids       = local.private_subnet_ids
+  cluster_name             = local.cluster_name
+  readonly_root_filesystem = false
+}
