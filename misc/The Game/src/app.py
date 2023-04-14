@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import re
 import string
+from collections import deque
 
 from flask import Flask, request
 
@@ -32,10 +33,6 @@ class MyException(Exception):
 alphabet = string.ascii_lowercase + string.ascii_uppercase + string.digits
 
 
-def shift_string_left(text, shift):
-    return text[shift:] + text[:shift]
-
-
 def _is_valid_cert(certificate: str) -> bool:
     user_cert = re.sub(r"\s+", "", certificate)
     return user_cert == CERTIFICATE
@@ -60,7 +57,9 @@ def validate_cert():
 def _is_valid_validity_string(validity_string: str, score: int) -> bool:
     if len(validity_string) != 50:
         return False
-    parsed_str = shift_string_left(validity_string, score)
+    deq = deque(validity_string)
+    deq.rotate(score * -1)
+    parsed_str = ''.join(deq)
     return parsed_str == CERTIFICATE[:50]
 
 
