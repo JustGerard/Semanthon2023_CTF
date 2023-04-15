@@ -1,0 +1,7 @@
+`curl --location 'https://the-game.semanthon.com/validate-score' \
+--header 'Content-Type: application/json' \
+--data '{
+    "cert": "MIICljCCAX4CAQEwDQYJKoZIhvcNAQELBQAwETEPMA0GA1UEAwwGR2VyYXJkMB4XDTIzMDQwOTIx\\nNDEzM1oXDTQ4MDQwMjIxNDEzM1owETEPMA0GA1UEAwwGR2VyYXJkMIIBIjANBgkqhkiG9w0BAQEF\\nAAOCAQ8AMIIBCgKCAQEAgD6G3YsSpSudfMviIc4SrEUGDiUrkm7alsU17dT8Qu+I575g3xhZ3J4t\\neTyMtvSQGFCk6wPmDtzVuvWMgdOa\\/dkpTWrIS3WPlidT+uIovF\\/Rc4iNgUYoqXGeO5wqUKtoTEz+\\nbndwCKfBZpqeCdOuKI2tferXBDBIUP4UrTO40zo7r4\\/bENg+Xb\\/FfFRWwqD5q1t81+2kVWCr3Ge3\\nH\\/jWKqTOZBOwnk4f+E6JkTwskU9gdSB4YTls2X+ca2UC\\/YpqwJXPQ0cG4HErwYcJrikSfJqIiPUc\\nXG0wbr9D8nO7wVELs4tFbEGX5rmcHXiBqLY\\/Y81KIBIaNMvWKqDKW\\/P6fwIDAQABMA0GCSqGSIb3\\nDQEBCwUAA4IBAQBHAiJpEsO6L94dK9x9cxWAyfcuU4nhMWFKTvFjzgZQyp6E7JMZrqn8V7q9ybm1\\n7ucn3Xc5jxvHr\\/M8dqdoMOF4mjqKlEGhArQN90X0rJlJXXfA5k+dS3VRGY6ajqytPhf+qohpCF0P\\nHwTpkrOeWTpZf6oLW1CLIUxpaSalh0ox+f3827yvEjl+CwRUeTho4AhwsfLcPO6pSI7my5W53N\\/k\\nbD\\/pnpdKY5yKgjwmmfyQy4YFiYixTkg68fRSD55eGu+lPKmnHq6AzSC64PTkQj05NFMIl7h1fl2n\\nqs8pDHCRcWYVH1bWVUcQhWKxVyZRHS\\/TGLe936+2k7WSGrqygO0p",
+    "score": 2023,
+    "validity": "NAQELBQAwETEPMA0GA1UEAwMIICljCCAX4CAQEwDQYJKoZIhvc"
+}'`
